@@ -28,7 +28,29 @@ def _validate_login(user_id, request):
         response_body = jsonify({'error': user_id + " is not logged in"})
         return {'body': response_body, 'code': 401}
     return {'code': 200}
-    
+
+@_app.route('/help', methods=['GET'])
+def get_help():
+    help_msg = "Welcome to Goldfish!\n"
+    help_msg += "Commands and usage examples (this tutorial assumes Goldfish is running on localhost:5678):\n"
+    help_msg += "- /help - Show this help information\n"
+    help_msg += "- /register - Register a new user\n"
+    help_msg += "\t Requires form data for field user_id\n"
+    help_msg += "\t Example with curl: curl -X POST -d \"user_id=simon\" localhost:5678/register\n"
+    help_msg += "- /login - Login to Goldfish\n"
+    help_msg += "\t Requires a previously registered user\n"
+    help_msg += "\t Requires form data for field user_id\n"
+    help_msg += "\t Example with curl: curl -X POST -d \"user_id=simon\" -c cookie.txt localhost:5678/login\n"
+    help_msg += "- /<user_id>/logout - Logout from Goldfish\n"
+    help_msg += "\t Requires user with user_id to be logged in\n"
+    help_msg += "\t Example with curl: curl -X DELETE -b cookie.txt localhost:5678/simon/logout\n"
+    help_msg += "- /<user_id>/phrases - List (GET) or Add (POST) new phrases to the user with user_id\n"
+    help_msg += "\t Requires user with user_id to be logged in\n"
+    help_msg += "\t Example with curl to add new phrases to the user with user_id:\n"
+    help_msg += "\t\t curl -X POST -b cookie.txt -d \"new_phrase=\" localhost:5678/simon/phrases\n"
+    help_msg += "\t Example with curl to get all phrases for the user with user_id:\n"
+    help_msg += "\t\t curl -X GET -b cookie.txt localhost:5678/simon/phrases\n"
+    return {'body': help_msg, 'code': 200}
 
 @_app.route('/register', methods=['POST'])
 def register_user():

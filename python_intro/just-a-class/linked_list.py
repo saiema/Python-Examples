@@ -1,11 +1,8 @@
-from list.list import List
-
-
 class _Node:
 
-    def __init__(self, value=None, next_node=None):
+    def __init__(self, value=None, next_Node=None):
         self.__value = value
-        self.__next_node = next_node
+        self.__next_Node = next_Node
 
     def set_value(self, value):
         self.__value = value
@@ -14,14 +11,13 @@ class _Node:
         return self.__value
 
     def set_next(self, node):
-        self.__next_node = node
+        self.__next_Node = node
 
     def get_next(self):
-        return self.__next_node
+        return self.__next_Node
 
 
-# noinspection DuplicatedCode
-class LinkedList(List):
+class LinkedList:
 
     def __init__(self):
         self.__head = None
@@ -47,7 +43,7 @@ class LinkedList(List):
     def insert_at(self, elem, at: int) -> bool:
         pass
 
-    def add_all(self, other: 'List'):
+    def add_all(self, other: 'LinkedList'):
         for i in range(other.size()):
             self.append(other.at(i))
 
