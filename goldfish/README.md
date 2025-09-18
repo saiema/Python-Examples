@@ -9,6 +9,7 @@ This is a server for a simple REST API. It will forget everything once the serve
 * GET `/<user>/phrases` : return a list of phrases associated with the current user
 * POST `/<user>/phrases` : adds a new pharse (passed inside the request's body)
 * DELETE `/<user>/logout` : logout the current user
+* GET `/help` : ask for help
 
 ## Starting the server
 
